@@ -29,4 +29,17 @@ float x,y,diameter,z,c,d,e,vibrate;;
         z = random(-2*speed,2*speed);
       }
    }
+   
+    boolean touches(Enemy enemies)
+   {
+     float distance = dist(x,y,enemies.x,enemies.y);
+     if(distance < (diameter + enemies.diameter)/2)
+     {
+     return true;
+     }
+     else
+     {
+       return false;
+     }
+   }
 }
