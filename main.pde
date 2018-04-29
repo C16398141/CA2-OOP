@@ -22,7 +22,6 @@ void setup() {
 void draw() {
 background(100);
 
-head.display(keys, border);
 
 if(frameCount % 60 == 0)
   {
@@ -45,5 +44,32 @@ if(frameCount % 60 == 0)
       }
     }
   }
-
+  head.display(keys, border);
+  
+  for(Enemy e : enemies)
+  {
+    float distance = dist(e.x,e.y,head.x,head.y);
+    if(distance < (head.mass + e.diameter)/2)
+   {
+     e.diameter=0;
+   }
+   
+     for(Enemy f : enemies)
+     {
+       if(e.touches(f))//if the objects are touching
+       {
+         if(e.x<f.x)//if object i is more towards the left
+         {
+           e.x=e.x-2;
+           f.x=f.x+2;
+         }
+         else
+         {
+           e.x=e.x+2;
+           f.x=f.x-2;
+         }
+       }
+     }
+  }
 }
+
