@@ -42,4 +42,23 @@ float x,y,diameter,z,c,d,e,vibrate;;
        return false;
      }
    }
+   
+   boolean borders(Border border) //border variable)
+   {
+     float distance = x-border.x;
+     if(distance <= (diameter/2))
+     {
+       x=x+3;
+     }
+     distance = border.x+border.thickness-x;
+     if(distance <= (diameter/2))
+     {
+       x=x-3;
+     }
+     if(border.y+border.depth<=y)
+     {
+       return true;
+     }
+     else return false;
+   }
 }
