@@ -20,4 +20,6 @@ void setup() {
 void draw() {
 background(100);
 
+head.display(keys, border);
+
 }
