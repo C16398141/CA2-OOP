@@ -15,4 +15,13 @@ float x,y,diameter,z;
      ellipse(x,y,diameter,diameter);
    }
    
+    void run() {
+      y = y + speed;
+      x = x + z;
+      if (frameCount % 30 == 0)
+      {
+        //if framecount divided by a second is zero
+        z = random(-2*speed,2*speed);
+      }
+   }
 }
