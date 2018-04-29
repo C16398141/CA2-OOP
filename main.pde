@@ -4,7 +4,9 @@
 
 //functions
 Snakehead. head;
+Border border;
 boolean[] keys;
+ArrayList <Enemy> enemies;
 
 void setup() {
  size(500,600);
@@ -12,6 +14,7 @@ void setup() {
  head = new Snakehead();
  border = new Border();
  keys= new boolean[4];
+ enemies = new ArrayList<Enemy>();
  
  keys[0]=false;
  keys[1]=false;
@@ -21,7 +24,7 @@ void setup() {
 
 void draw() {
 background(100);
-
+border.display();
 
 if(frameCount % 60 == 0)
   {
