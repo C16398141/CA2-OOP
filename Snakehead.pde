@@ -9,4 +9,26 @@ mass=15;
 speed=3;
 }
 
+void display() {
+if(keyPressed==true)
+    {
+     if(keyCode==UP)
+     {
+       y--;
+     }
+     if(keyCode==DOWN)
+     {
+       y++;
+     }
+     if(keyCode==RIGHT)
+     {
+       x++;
+     }
+    if(keyCode==LEFT)
+    {
+      x--;
+    }
+    keyReleased();
+   }
+  }
 }
