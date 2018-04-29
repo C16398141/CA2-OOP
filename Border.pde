@@ -7,5 +7,9 @@ class Border {
     y=75;
     thickness=450;
     depth=500;
-    
   }
+  void display() {
+    fill(255);
+    rect(x, y, thickness, depth);
+  }
+}
