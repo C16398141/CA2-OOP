@@ -75,26 +75,28 @@ void draw() {
   }
   head.display(keys,border);
   
-  for(Enemy e : enemies)
+  //for(Enemy e : enemies)
+  for(int i = enemies.size() -1; i>= 0; i--)
   {
-    float distance = dist(e.x,e.y,head.x,head.y);
-    if(distance < (head.diameter + e.diameter)/2)
+    float distance = dist(enemies.get(i).x,enemies.get(i).y,head.x,head.y);
+    if(distance < (head.diameter + enemies.get(i).diameter)/2)
    {
-     e.diameter=0;
+     enemies.remove(i);
+     score=score+10;
    }
    
      for(Enemy f : enemies)
      {
-       if(e.touches(f))//if the objects are touching
+       if(enemies.get(i).touches(f))//if the objects are touching
        {
-         if(e.x<f.x)//if object i is more towards the left
+         if(enemies.get(i).x<f.x)//if object i is more towards the left
          {
-           e.x=e.x-2;
+           enemies.get(i).x=enemies.get(i).x-2;
            f.x=f.x+2;
          }
          else
          {
-           e.x=e.x+2;
+           enemies.get(i).x=enemies.get(i).x+2;
            f.x=f.x-2;
          }
        }
