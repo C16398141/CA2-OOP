@@ -8,6 +8,8 @@ Border border;
 Slider slider;
 boolean[] keys;
 ArrayList <Enemy> enemies;
+int score=0;
+PFont font;
 //music import
 
 void setup() {
@@ -19,6 +21,8 @@ void setup() {
   slider = new Slider();
   keys= new boolean[4];
   enemies = new ArrayList<Enemy>();
+  font = loadFont("ArialRoundedMTBold-48.vlw");
+  textFont(font);
   //head = new ArrayList<Snakehead>();
   /*
   int i;
@@ -43,6 +47,12 @@ void draw() {
   border.display();
   slider.display();
   c=head.borders(border);
+  
+  fill(255);
+  textSize(20);
+  text("Score:",10,20);
+  text(score,100,20);
+  
   if(frameCount % 60 == 0)
   {
     enemies.add(new Enemy());
