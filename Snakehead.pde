@@ -1,17 +1,16 @@
-class Snakehead{
-float x,y,mass,speed;
-
-Snakehead() {
-//initialise variables
-x=width/2;
-y=height/2;
-mass=15;
-speed=3;
-}
-
-void display(boolean[] keys, Border border) {
+class Snakehead extends Body {
+  
+  Snakehead() {
+  //initialise variables here
+  x=width/2;
+  y=height/2;
+  diameter=15;
+  speed=4;
+  }
+  
+  void display(boolean[] keys, Border border) {
     fill(0);
-    ellipse(x,y,mass,mass);
+    ellipse(x,y,diameter,diameter);
     if(keys[0])//up arrow pressed
     {
       y=y-speed;
@@ -28,21 +27,20 @@ void display(boolean[] keys, Border border) {
     {
       x=x+speed;
     }
-}
-
-void borders(Border border)
+  }
+    
+  void borders(Border border)
    {
      float distance = x-border.x;
-     if(distance <= (mass/2))
+     if(distance <= (diameter/2))
      {
        x=x+10;
      }
      
      distance = border.x+border.thickness-x;
-     if(distance <= (mass/2))
+     if(distance <= (diameter/2))
      {
        x=x-10;
      }
    }
-
 }
