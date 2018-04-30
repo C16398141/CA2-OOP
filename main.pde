@@ -58,32 +58,30 @@ void draw() {
     enemies.add(new Enemy());
   }
 
-  for(Enemy e : enemies)
-  {
-    if(e.diameter!=0)
-    {
-      e.display();
-      e.run();
-      b=e.borders(border);
-      if(b==true)
-      {
-       //enemies.remove(e); concurrent modulation exception
-       e.diameter=0;
-       head.diameter--;
-      }
-    }
-  }
   head.display(keys,border);
   
   //for(Enemy e : enemies)
   for(int i = enemies.size() -1; i>= 0; i--)
   {
+    enemies.get(i).display();
+    enemies.get(i).run();
+    enemies.get(i).dead=enemies.get(i).borders(border);
+    if(enemies.get(i).dead==true)
+    {
+      head.diameter--;
+      enemies.remove(i);
+    }
     float distance = dist(enemies.get(i).x,enemies.get(i).y,head.x,head.y);
     if(distance < (head.diameter + enemies.get(i).diameter)/2)
-   {
-     enemies.remove(i);
+    {
+     enemies.get(i).dead = true;
      score=score+10;
-   }
+    }
+    
+    if(enemies.get(i).dead==true)
+    {
+      enemies.remove(i);
+    }
    
      for(Enemy f : enemies)
      {
