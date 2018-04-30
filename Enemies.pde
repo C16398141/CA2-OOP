@@ -1,6 +1,6 @@
-class Enemy {
-float x,y,diameter,z,c,d,e,vibrate;;
-  float speed;
+class Enemy extends Body {
+ 
+  float z,c,d,e,vibrate;
   
   Enemy() {
    x= random(width/4,width/2);
@@ -19,18 +19,18 @@ float x,y,diameter,z,c,d,e,vibrate;;
      ellipse(x,y,diameter,diameter);
    }
    
-    void run() {
-      y = y + speed;
-      x = x + random (-vibrate,vibrate);
-      x = x + z;
-      if (frameCount % 30 == 0)
-      {
-        //if framecount divided by a second is zero
-        z = random(-2*speed,2*speed);
-      }
+   void run() {
+     y = y + speed;
+     x = x + random (-vibrate,vibrate);
+     x = x + z;
+     if (frameCount % 30 == 0)
+     {
+       //if framecount divided by a second is zero
+       z = random(-2*speed,2*speed);
+     }
    }
    
-    boolean touches(Enemy enemies)
+   boolean touches(Enemy enemies)
    {
      float distance = dist(x,y,enemies.x,enemies.y);
      if(distance < (diameter + enemies.diameter)/2)
@@ -43,7 +43,7 @@ float x,y,diameter,z,c,d,e,vibrate;;
      }
    }
    
-   boolean borders(Border border) //border variable)
+   boolean borders(Border border)
    {
      float distance = x-border.x;
      if(distance <= (diameter/2))
