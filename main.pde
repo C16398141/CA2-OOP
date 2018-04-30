@@ -119,3 +119,20 @@ void keyReleased()
   }
 }
 
+void mouseDragged()
+{
+ if (slider.x-slider.r < mouseX && mouseX < slider.x+slider.r)//if within x range
+ {
+   if(32 < mouseY && mouseY < 72)//and within y range
+   {
+     if ( mouseX < slider.max && mouseX > slider.min)//within slider limits
+     {
+       slider.x=mouseX;//move
+       for(Enemy e : enemies)
+       {
+         e.vibrate=(slider.x/30);
+       }
+     }
+   }
+ }
+}
