@@ -1,5 +1,5 @@
-
 //about
+//struggled with pressed multiple arrow keys at one for diagonal movement but fixed it with a boolean array
 
 
 //functions
@@ -13,6 +13,7 @@ void setup() {
  //initialise objects
  head = new Snakehead();
  border = new Border();
+ slider = new Slider();
  keys= new boolean[4];
  enemies = new ArrayList<Enemy>();
  
@@ -25,6 +26,8 @@ void setup() {
 void draw() {
 background(100);
 border.display();
+slider.display();
+head.borders(border);
 
 if(frameCount % 60 == 0)
   {
