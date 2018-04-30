@@ -29,18 +29,4 @@ class Snakehead extends Body {
     }
   }
     
-  void borders(Border border)
-   {
-     float distance = x-border.x;
-     if(distance <= (diameter/2))
-     {
-       x=x+10;
-     }
-     
-     distance = border.x+border.thickness-x;
-     if(distance <= (diameter/2))
-     {
-       x=x-10;
-     }
-   }
 }
