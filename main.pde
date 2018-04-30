@@ -1,39 +1,52 @@
-//about
+// about
 //struggled with pressed multiple arrow keys at one for diagonal movement but fixed it with a boolean array
 
-
 //functions
-Snakehead. head;
+Snakehead head;
+//ArrayList <Snakehead> head;
 Border border;
+Slider slider;
 boolean[] keys;
 ArrayList <Enemy> enemies;
+//music import
 
 void setup() {
- size(500,600);
- //initialise objects
- head = new Snakehead();
- border = new Border();
- slider = new Slider();
- keys= new boolean[4];
- enemies = new ArrayList<Enemy>();
- 
- keys[0]=false;
- keys[1]=false;
- keys[2]=false;
- keys[3]=false;
+  size(500,600);
+  //initialise objects
+  //music
+  head = new Snakehead();
+  border = new Border();
+  slider = new Slider();
+  keys= new boolean[4];
+  enemies = new ArrayList<Enemy>();
+  //head = new ArrayList<Snakehead>();
+  /*
+  int i;
+  for(i=0; i<3; i++)
+  {
+    head.add(new Snakehead());
+    //try to give identifing unique value through variable from 1-x
+    //(x being the no. heads. then get(0).mass is the biggest and the largest current unique
+    //value is the first to be r
+    
+  }*/
+  keys[0]=false;
+  keys[1]=false;
+  keys[2]=false;
+  keys[3]=false;
 }
 
 void draw() {
-background(100);
-border.display();
-slider.display();
-head.borders(border);
-
-if(frameCount % 60 == 0)
+  background(100);
+  boolean b,c=false;
+  
+  border.display();
+  slider.display();
+  c=head.borders(border);
+  if(frameCount % 60 == 0)
   {
     enemies.add(new Enemy());
   }
-  boolean b=false;
 
   for(Enemy e : enemies)
   {
@@ -46,16 +59,16 @@ if(frameCount % 60 == 0)
       {
        //enemies.remove(e); concurrent modulation exception
        e.diameter=0;
-       head.mass--;
+       head.diameter--;
       }
     }
   }
-  head.display(keys, border);
+  head.display(keys,border);
   
   for(Enemy e : enemies)
   {
     float distance = dist(e.x,e.y,head.x,head.y);
-    if(distance < (head.mass + e.diameter)/2)
+    if(distance < (head.diameter + e.diameter)/2)
    {
      e.diameter=0;
    }
@@ -78,7 +91,6 @@ if(frameCount % 60 == 0)
      }
   }
 }
-
 void keyPressed()
 {
   if(keyCode==UP)
