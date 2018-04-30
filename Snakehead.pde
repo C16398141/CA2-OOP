@@ -30,4 +30,19 @@ void display(boolean[] keys, Border border) {
     }
 }
 
+void borders(Border border)
+   {
+     float distance = x-border.x;
+     if(distance <= (mass/2))
+     {
+       x=x+10;
+     }
+     
+     distance = border.x+border.thickness-x;
+     if(distance <= (mass/2))
+     {
+       x=x-10;
+     }
+   }
+
 }
