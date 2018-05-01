@@ -2,12 +2,13 @@
 //struggled with pressed multiple arrow keys at one for diagonal movement but fixed it with a boolean array
 
 //functions
-Snakehead head;
-//ArrayList <Snakehead> head;
+//Snakehead head;
+ArrayList <Snakehead> head;
 Border border;
 Slider slider;
 boolean[] keys;
 ArrayList <Enemy> enemies;
+ArrayList <Bot> bots;
 int score=0;
 PFont font;
 //music import
@@ -25,11 +26,14 @@ void setup() {
   music.rewind();
   
   //initialise objects
-  head = new Snakehead();
+  head = new ArrayList<Snakehead>();
+  bots = new ArrayList<Bot>();
   border = new Border();
   slider = new Slider();
   keys= new boolean[4];
   enemies = new ArrayList<Enemy>();
+  
+  head.add(new Snakehead());
   
   //initialise fonts
   font = loadFont("ArialRoundedMTBold-48.vlw");
@@ -58,7 +62,7 @@ void draw() {
   
   border.display();
   slider.display();
-  c=head.borders(border);
+  c=head.get(0).borders(border);
   
   fill(255);
   textSize(20);
@@ -69,8 +73,14 @@ void draw() {
   {
     enemies.add(new Enemy());
   }
-
-  head.display(keys,border);
+  
+  for(Bot bot : bots)
+  {
+    bot.display();
+    bot.move();
+    bot.borders(border);
+  }
+  head.get(0).display(keys,border);
   
   for(int i = enemies.size() -1; i>= 0; i--)
   {
@@ -79,14 +89,18 @@ void draw() {
     enemies.get(i).dead=enemies.get(i).borders(border);
     if(enemies.get(i).dead==true)
     {
-      head.diameter--;
+      head.get(0).diameter--;
       enemies.remove(i);
     }
-    float distance = dist(enemies.get(i).x,enemies.get(i).y,head.x,head.y);
-    if(distance < (head.diameter + enemies.get(i).diameter)/2)
+    float distance = dist(enemies.get(i).x,enemies.get(i).y,head.get(0).x,head.get(0).y);
+    if(distance < (head.get(0).diameter + enemies.get(i).diameter)/2)
     {
      enemies.get(i).dead = true;
      score=score+10;
+     if(score % 50 == 0)
+     {
+       bots.add(new Bot());
+     }
     }
     
     if(enemies.get(i).dead==true)
