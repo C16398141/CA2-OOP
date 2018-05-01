@@ -1,8 +1,8 @@
-class Droids extends Snakehead {
+class Droids extends Body {
  
   float cx;
   float cy;
-  float r;
+  float r,t;
   
   Droids(Snakehead head){
     cx=head.x;
@@ -15,9 +15,9 @@ class Droids extends Snakehead {
   {
     cx=head.x;
     cy=head.y;
-    float t = millis()/400.0f;
-    int x = (int)(cx+r*cos(t));
-    int y = (int)(cy+r*sin(t));
+    t = millis()/400.0;
+    x = (int)(cx+r*cos(t));
+    y = (int)(cy+r*sin(t));
     
     ellipse(x,y,diameter,diameter);
 
