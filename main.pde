@@ -158,7 +158,7 @@ void draw() {
     }
     fill(0);
     stroke(0);
-    rect(290,20,162,32,10);
+    rect(290,20,163,32,10);
     fill(255,0,0);
     rect(250,10,50,50,10);
     fill(255);
@@ -176,7 +176,7 @@ void draw() {
       {
        fill(255,0,0); 
       }
-      rect(300+(10*i),21,9,30,10);
+      rect(301+(10*i),21,9,30,10);
     }
 }
 
@@ -197,6 +197,17 @@ void keyPressed()
   if(keyCode==RIGHT)
   {
     keys[3]=true;
+  }
+  if(key==' ')
+  {
+    if (head.get(0).diameter<15)
+    {
+      if(droids.size()>0)
+      {
+       droids.remove(droids.size()-1);
+       head.get(0).diameter++;
+      }
+    }
   }
 }
 
