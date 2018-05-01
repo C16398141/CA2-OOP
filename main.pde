@@ -83,7 +83,11 @@ void draw() {
     bot.borders(border);
   }
   head.get(0).display(keys,border);
-  droids.get(0).draw(head.get(0));
+  
+  for(Droids droids : droids)
+  {
+    droids.draw(head.get(0));
+  }
 
   for(int i = enemies.size() -1; i>= 0; i--)
   {
@@ -100,7 +104,11 @@ void draw() {
     {
      enemies.get(i).dead = true;
      score=score+10;
-     if(score % 100 == 0)
+     if(score % 50 == 0)
+     {
+       droids.add(new Droids(head.get(0)));
+     }
+     else if(score % 30 == 0)
      {
        bots.add(new Bot());
      }
@@ -136,6 +144,14 @@ void draw() {
         {
          e.dead=true;
          score=score+5;
+        }
+      }
+      for(Droids droids : droids)
+      {
+        if(e.touches(droids))
+        {
+          e.dead=true;
+          score=score+10;
         }
       }
     }
