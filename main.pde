@@ -11,18 +11,30 @@ ArrayList <Enemy> enemies;
 int score=0;
 PFont font;
 //music import
+import ddf.minim.*;
+Minim minim;
+AudioPlayer music;
 
 void setup() {
   size(500,600);
-  //initialise objects
+  
   //music
+  minim= new Minim(this);
+  music = minim.loadFile("Best_Dramatic_music_ever.mp3");
+  music.play();
+  music.rewind();
+  
+  //initialise objects
   head = new Snakehead();
   border = new Border();
   slider = new Slider();
   keys= new boolean[4];
   enemies = new ArrayList<Enemy>();
+  
+  //initialise fonts
   font = loadFont("ArialRoundedMTBold-48.vlw");
   textFont(font);
+  
   //head = new ArrayList<Snakehead>();
   /*
   int i;
@@ -60,7 +72,6 @@ void draw() {
 
   head.display(keys,border);
   
-  //for(Enemy e : enemies)
   for(int i = enemies.size() -1; i>= 0; i--)
   {
     enemies.get(i).display();
@@ -82,25 +93,29 @@ void draw() {
     {
       enemies.remove(i);
     }
-   
-     for(Enemy f : enemies)
-     {
-       if(enemies.get(i).touches(f))//if the objects are touching
-       {
-         if(enemies.get(i).x<f.x)//if object i is more towards the left
-         {
-           enemies.get(i).x=enemies.get(i).x-2;
-           f.x=f.x+2;
-         }
-         else
-         {
-           enemies.get(i).x=enemies.get(i).x+2;
-           f.x=f.x-2;
-         }
-       }
-     }
   }
+    
+    for(Enemy e : enemies)
+    {
+      for(Enemy f : enemies)
+      {
+        if(e.touches(f))//if the objects are touching
+        {
+          if(e.x<f.x)//if object i is more towards the left
+           {
+             e.x=e.x-2;
+             f.x=f.x+2;
+           }
+          else
+          {
+            e.x=e.x+2;
+            f.x=f.x-2;
+          }
+        }
+      }
+    }
 }
+
 void keyPressed()
 {
   if(keyCode==UP)
