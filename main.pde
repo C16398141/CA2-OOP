@@ -86,11 +86,11 @@ void draw() {
   {
     enemies.get(i).display();
     enemies.get(i).run();
-    enemies.get(i).dead=enemies.get(i).borders(border);
-    if(enemies.get(i).dead==true)
+    b=enemies.get(i).borders(border);
+    if(b)
     {
       head.get(0).diameter--;
-      enemies.remove(i);
+      enemies.get(i).dead=true;
     }
     float distance = dist(enemies.get(i).x,enemies.get(i).y,head.get(0).x,head.get(0).y);
     if(distance < (head.get(0).diameter + enemies.get(i).diameter)/2)
@@ -125,6 +125,14 @@ void draw() {
             e.x=e.x+2;
             f.x=f.x-2;
           }
+        }
+      }
+      for(Bot bots : bots)
+      {
+        if(e.touches(bots))
+        {
+         e.dead=true;
+         score=score+5;
         }
       }
     }
