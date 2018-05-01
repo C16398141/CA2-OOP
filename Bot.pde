@@ -8,4 +8,13 @@ class Bot extends Body {
   bot=true;
  }
  
+ void display() {
+     fill(50);
+     ellipse(x,y,diameter,diameter);
+   }
+   
+   void move() {
+    x=x+speed; 
+   }
+  
 }
