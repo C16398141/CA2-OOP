@@ -83,10 +83,11 @@ void draw() {
     bot.borders(border);
   }
   head.get(0).display(keys,border);
-  
+  int k=0;
   for(Droids droids : droids)
   {
-    droids.draw(head.get(0));
+    k++;
+    droids.draw(head.get(0),k);
   }
 
   for(int i = enemies.size() -1; i>= 0; i--)
