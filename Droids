@@ -11,13 +11,13 @@ class Droids extends Body {
     r=head.diameter*2;
   }
   
-  void draw(Snakehead head)
+  void draw(Snakehead head,int i)
   {
     cx=head.x;
     cy=head.y;
     t = millis()/400.0;
-    x = (int)(cx+r*cos(t));
-    y = (int)(cy+r*sin(t));
+    x = (int)(cx+r*cos(t*i));
+    y = (int)(cy+r*sin(t*i));
     
     ellipse(x,y,diameter,diameter);
 
