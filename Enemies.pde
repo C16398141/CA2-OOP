@@ -1,6 +1,7 @@
 class Enemy extends Body {
  
   float z,c,d,e,vibrate;
+  boolean dead;
   
   Enemy() {
    x= random(width/4,width/2);
@@ -12,6 +13,7 @@ class Enemy extends Body {
    e=random(255);
    diameter = 10;
    speed = random(1,1.5);
+   bot=dead=false;
    }
    
    void display() {
@@ -27,19 +29,6 @@ class Enemy extends Body {
      {
        //if framecount divided by a second is zero
        z = random(-2*speed,2*speed);
-     }
-   }
-   
-   boolean touches(Enemy enemies)
-   {
-     float distance = dist(x,y,enemies.x,enemies.y);
-     if(distance < (diameter + enemies.diameter)/2)
-     {
-     return true;
-     }
-     else
-     {
-       return false;
      }
    }
    
