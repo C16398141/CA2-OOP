@@ -6,6 +6,7 @@ class Snakehead extends Body {
   y=height/2;
   diameter=15;
   speed=4;
+  bot=false;
   }
   
   void display(boolean[] keys, Border border) {
@@ -35,5 +36,9 @@ class Snakehead extends Body {
       x=x+speed;
     }
   }
+  
+  void grow()
+  {
     
+  }
 }
