@@ -11,13 +11,20 @@ class Snakehead extends Body {
   void display(boolean[] keys, Border border) {
     fill(0);
     ellipse(x,y,diameter,diameter);
-    if(keys[0])//up arrow pressed
+      
+    if(border.y<(y-(diameter/2)-5))
     {
-      y=y-speed;
+      if(keys[0])//up arrow pressed
+      {
+        y=y-speed;
+      }
     }
-     if(keys[1])//down arrow pressed
+    if((border.y+border.depth)>(y+(diameter/2)))
     {
-      y=y+speed;
+      if(keys[1])//down arrow pressed
+      {
+        y=y+speed;
+      }
     }
      if(keys[2])//left arrow pressed
     {
