@@ -36,4 +36,18 @@ class Body {
      else return false;
    }
    
+   boolean touches(Body enemies)
+   {
+     float distance = dist(x,y,enemies.x,enemies.y);
+     if(distance < (diameter + enemies.diameter)/2)
+     {
+     return true;
+     }
+     else
+     {
+       return false;
+     }
+   }
+   
+   
 }
