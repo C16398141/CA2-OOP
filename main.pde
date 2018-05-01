@@ -156,6 +156,28 @@ void draw() {
         }
       }
     }
+    fill(0);
+    stroke(0);
+    rect(290,20,162,32,10);
+    fill(255,0,0);
+    rect(250,10,50,50,10);
+    fill(255);
+    noStroke();
+    rect(255,30,40,10);
+    rect(270,15,10,40);
+    int i;
+    for(i=0; i<15; i++)
+    {
+      if(head.get(0).diameter<i)
+      {
+        fill(255);
+      }
+      else
+      {
+       fill(255,0,0); 
+      }
+      rect(300+(10*i),21,9,30,10);
+    }
 }
 
 void keyPressed()
