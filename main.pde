@@ -4,6 +4,7 @@
 //functions
 //Snakehead head;
 ArrayList <Snakehead> head;
+ArrayList <Droids> droids;
 Border border;
 Slider slider;
 boolean[] keys;
@@ -28,6 +29,7 @@ void setup() {
   //initialise objects
   head = new ArrayList<Snakehead>();
   bots = new ArrayList<Bot>();
+  droids = new ArrayList<Droids>();
   border = new Border();
   slider = new Slider();
   keys= new boolean[4];
@@ -39,17 +41,17 @@ void setup() {
   font = loadFont("ArialRoundedMTBold-48.vlw");
   textFont(font);
   
-  //head = new ArrayList<Snakehead>();
-  /*
-  int i;
-  for(i=0; i<3; i++)
+  //int i;
+  droids.add(new Droids(head.get(0)));
+  /*for(i=0; i<3; i++)
   {
-    head.add(new Snakehead());
+    int j=i+1;
+    head.add(new Snakehead(head.get(0),j));
+  }*/
     //try to give identifing unique value through variable from 1-x
     //(x being the no. heads. then get(0).mass is the biggest and the largest current unique
     //value is the first to be r
     
-  }*/
   keys[0]=false;
   keys[1]=false;
   keys[2]=false;
@@ -81,7 +83,8 @@ void draw() {
     bot.borders(border);
   }
   head.get(0).display(keys,border);
-  
+  droids.get(0).draw(head.get(0));
+
   for(int i = enemies.size() -1; i>= 0; i--)
   {
     enemies.get(i).display();
@@ -97,7 +100,7 @@ void draw() {
     {
      enemies.get(i).dead = true;
      score=score+10;
-     if(score % 50 == 0)
+     if(score % 100 == 0)
      {
        bots.add(new Bot());
      }
