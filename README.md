@@ -8,11 +8,11 @@ Author: Chris Clarke</h3>
 
 <h3>Youtube URL:</h3>
 
-https://www.youtube.com/watch?v=txmhuPwwiiw
+https://www.youtube.com/watch?v=lvGiFRO_3lA
 
 <h3>Embedded Video:</h3>
 
-<a href="http://www.youtube.com/watch?feature=player_embedded&v=txmhuPwwiiw" target="_blank"><img src="http://img.youtube.com/vi/txmhuPwwiiw/0.jpg" 
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=lvGiFRO_3lA" target="_blank"><img src="http://img.youtube.com/vi/lvGiFRO_3lA/0.jpg" 
 alt="OOP Assignment 2" width="240" height="180" border="10" /></a>
 
 
