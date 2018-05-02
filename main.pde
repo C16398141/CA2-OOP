@@ -34,23 +34,14 @@ void setup() {
   slider = new Slider();
   keys= new boolean[5];
   enemies = new ArrayList<Enemy>();
-  
   head.add(new Snakehead());
   
   //initialise fonts
   font = loadFont("ArialRoundedMTBold-48.vlw");
   textFont(font);
   
-  //int i;
+  //game starts off with a friendly droid- creates a droid
   droids.add(new Droids(head.get(0)));
-  /*for(i=0; i<3; i++)
-  {
-    int j=i+1;
-    head.add(new Snakehead(head.get(0),j));
-  }*/
-    //try to give identifing unique value through variable from 1-x
-    //(x being the no. heads. then get(0).mass is the biggest and the largest current unique
-    //value is the first to be r
     
   keys[0]=false;
   keys[1]=false;
@@ -60,23 +51,23 @@ void setup() {
 
 void draw() {
   background(100);
-  boolean b,c=false;
+  boolean b=false;
   
   border.display();
   slider.display();
-  c=head.get(0).borders(border);
+  head.get(0).borders(border);
   
   fill(255);
   textSize(20);
   textAlign(LEFT);
-  text("Score:",10,20);
-  text(score,100,20);
-  
+  text("Score:",20,30);
+  text(score,110,30);
+ 
   if(frameCount % 60 == 0 && keys[4]==false)
   {
     enemies.add(new Enemy());
   }
-  
+
   for(Bot bot : bots)
   {
     bot.display();
@@ -111,6 +102,14 @@ void draw() {
     if(b)
     {
       head.get(0).diameter--;
+      
+      //if on last life
+      if (head.get(0).diameter==1)
+      {
+        //change colour to red
+        head.get(0).colour=255;
+      }
+      
       enemies.get(i).dead=true;
     }
     
@@ -124,11 +123,11 @@ void draw() {
     {
      enemies.get(i).dead = true;
      score=score+10;
-     if(score % 50 == 0)
+     if(score % 80 == 0)
      {
        droids.add(new Droids(head.get(0)));
      }
-     else if(score % 30 == 0)
+     else if(score % 40 == 0)
      {
        bots.add(new Bot());
      }
@@ -177,7 +176,7 @@ void draw() {
     }
     fill(0);
     stroke(0);
-    rect(290,20,163,32,10);
+    rect(290,20,153,32,10);
     fill(255,0,0);
     rect(250,10,50,50,10);
     fill(255);
@@ -185,9 +184,9 @@ void draw() {
     rect(255,30,40,10);
     rect(270,15,10,40);
     int i;
-    for(i=0; i<15; i++)
+    for(i=0; i<14; i++)
     {
-      if(head.get(0).diameter<i)
+      if(head.get(0).diameter<=(i+1))
       {
         fill(255);
       }
@@ -219,6 +218,22 @@ void draw() {
     fill(255);
     text("Difficulty",70,70);
     text("Hold p to pause or to find instructions",100,height-5);
+    
+     if (head.get(0).diameter<1)
+      {
+        //change colour to red
+        fill(255,0,0);
+        rect(0,0,width,height);
+        fill(255);
+        textAlign(CENTER);
+        textSize(50);
+        text("GAME OVER",width/2,200);
+        textSize(30);
+        text("Your Score was: ",width/2,290);
+        text(score,width/2,340);
+        text("The Highscore is: ",width/2,400);
+        text("12655",width/2,450);
+      }
       
 }
 
