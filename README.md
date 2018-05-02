@@ -1,4 +1,4 @@
-# CA2-OOP
+ # CA2-OOP
 
 <h1>Circles of Death</h1>
 <h3>Solo Project - C16398141
@@ -20,7 +20,7 @@ alt="OOP Assignment 2" width="240" height="180" border="10" /></a>
 
 1. Get your headphones ready, your ears are in for a treat
 
-2. Click on Run Button in Processing
+2. Click on Run Button in Processing and make sure the window that opens is selected via the mouse (in the foreground)
 
 3. Hold p to read the instructions
 
