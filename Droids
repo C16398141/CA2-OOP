@@ -15,10 +15,13 @@ class Droids extends Body {
   {
     cx=head.x;
     cy=head.y;
+    //timer
     t = millis()/400.0;
+    //x and y values or position moved around with trigonometry based on time passed from timer
     x = (int)(cx+r*cos(t*i));
     y = (int)(cy+r*sin(t*i));
     
+    //display
     ellipse(x,y,diameter,diameter);
 
   }
