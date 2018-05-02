@@ -72,14 +72,14 @@ void draw() {
   }
   else if(score<500)
   {
-  if(frameCount % 45 == 0 && keys[4]==false)
+  if(frameCount % 50 == 0 && keys[4]==false)
   {
     enemies.add(new Enemy());
   }
   }
   else
   {
-  if(frameCount % 30 == 0 && keys[4]==false)
+  if(frameCount % 40 == 0 && keys[4]==false)
   {
     enemies.add(new Enemy());
   }
