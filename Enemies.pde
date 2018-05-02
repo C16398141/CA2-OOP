@@ -4,7 +4,7 @@ class Enemy extends Body {
   boolean dead;
   
   Enemy() {
-   x= random(width/4,width/2);
+   x= random(width/5,width*4/5);
    y= 75;
    z=0;
    vibrate=1;
