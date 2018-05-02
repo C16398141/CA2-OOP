@@ -32,7 +32,7 @@ void setup() {
   droids = new ArrayList<Droids>();
   border = new Border();
   slider = new Slider();
-  keys= new boolean[4];
+  keys= new boolean[5];
   enemies = new ArrayList<Enemy>();
   
   head.add(new Snakehead());
@@ -68,10 +68,11 @@ void draw() {
   
   fill(255);
   textSize(20);
+  textAlign(LEFT);
   text("Score:",10,20);
   text(score,100,20);
   
-  if(frameCount % 60 == 0)
+  if(frameCount % 60 == 0 && keys[4]==false)
   {
     enemies.add(new Enemy());
   }
@@ -79,27 +80,45 @@ void draw() {
   for(Bot bot : bots)
   {
     bot.display();
-    bot.move();
+    if(keys[4]==false)
+    {
+      bot.move();
+    }
     bot.borders(border);
   }
-  head.get(0).display(keys,border);
+  if(keys[4]==false)
+    {
+      head.get(0).display(keys,border);
+    }
   int k=0;
   for(Droids droids : droids)
   {
     k++;
-    droids.draw(head.get(0),k);
+    if(keys[4]==false)
+    {
+      droids.draw(head.get(0),k);
+    }
   }
 
   for(int i = enemies.size() -1; i>= 0; i--)
   {
     enemies.get(i).display();
-    enemies.get(i).run();
+    if(keys[4]==false)
+    {
+      enemies.get(i).run();
+    }
     b=enemies.get(i).borders(border);
     if(b)
     {
       head.get(0).diameter--;
       enemies.get(i).dead=true;
     }
+    
+    for(Enemy e : enemies)
+    {
+      e.vibrate=(slider.x/15);
+    }
+       
     float distance = dist(enemies.get(i).x,enemies.get(i).y,head.get(0).x,head.get(0).y);
     if(distance < (head.get(0).diameter + enemies.get(i).diameter)/2)
     {
@@ -178,6 +197,29 @@ void draw() {
       }
       rect(301+(10*i),21,9,30,10);
     }
+    if(keys[4])
+    {
+     // fill(0);
+      rect(50,50,width-100,height-100,50);
+      
+      fill(255);
+      textSize(50);
+      textAlign(CENTER);
+      text("PAUSED:",width/2,height/5);
+      textSize(30);
+      text("CONTROLS:",width/2,420);
+      textSize(20);
+      String instructions = "The purpose of the game is to prevent the circles of death from breaching your defenses. Armed with the touch of death, you must hunt these elusive foes down. In game upgrades occur to strengthen your defense when you reach score milestones. Friendly bots moves side to side while droids orbit your location.";
+      text(instructions,75,150,350,250);
+      String controls = "Use the arrow keys to move. Press spacebar to absorb the health of a friendly droid. Enjoy!";
+      text(controls,75,440,350,100);  
+    }
+    textAlign(LEFT);
+    textSize(15);
+    fill(255);
+    text("Difficulty",70,70);
+    text("Hold p to pause or to find instructions",100,height-5);
+      
 }
 
 void keyPressed()
@@ -209,6 +251,11 @@ void keyPressed()
       }
     }
   }
+  if (key =='p')
+  {
+   //pause
+   keys[4]=true;
+  }
 }
 
 void keyReleased()
@@ -229,6 +276,11 @@ void keyReleased()
   {
     keys[3]=false;
   }
+  if (key=='p')
+  {
+   //pause 
+   keys[4]=false;
+  }
 }
 
 void mouseDragged()
@@ -240,10 +292,6 @@ void mouseDragged()
      if ( mouseX < slider.max && mouseX > slider.min)//within slider limits
      {
        slider.x=mouseX;//move
-       for(Enemy e : enemies)
-       {
-         e.vibrate=(slider.x/30);
-       }
      }
    }
  }
