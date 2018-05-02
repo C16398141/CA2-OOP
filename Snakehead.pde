@@ -7,12 +7,13 @@ class Snakehead extends Body {
   diameter=15;
   speed=4;
   bot=false;
+  colour=0;
   }
   
   void display(boolean[] keys, Border border) {
-    fill(0);
+    fill(colour,0,0);
     ellipse(x,y,diameter,diameter);
-      
+    
     if(border.y<(y-(diameter/2)-5))
     {
       if(keys[0])//up arrow pressed
@@ -36,9 +37,5 @@ class Snakehead extends Body {
       x=x+speed;
     }
   }
-  
-  void grow()
-  {
-    
-  }
+
 }
