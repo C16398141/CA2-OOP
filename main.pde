@@ -252,7 +252,7 @@ void draw() {
     //if paused display pause menu
     if(keys[4])
     {
-     // fill(0);
+      fill(255,0,0);
       rect(50,50,width-100,height-100,50);
       
       fill(255);
@@ -278,6 +278,7 @@ void draw() {
     //if snakehead is dead display end game menu with score and highscore
     if (head.get(0).diameter<1)
     {
+      music.pause();
       keys[4]=true;
       //change colour to red
       fill(255,0,0);
