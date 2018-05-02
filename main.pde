@@ -35,7 +35,6 @@ void setup() {
   keys= new boolean[5];
   enemies = new ArrayList<Enemy>();
   head.add(new Snakehead());
-  
   //initialise fonts
   font = loadFont("ArialRoundedMTBold-48.vlw");
   textFont(font);
@@ -62,12 +61,13 @@ void draw() {
   textAlign(LEFT);
   text("Score:",20,30);
   text(score,110,30);
- 
+  
+  //tried variations of making 60 a variable that decreased as your score increased but the code wouldn't work even though the logic was perfect
   if(frameCount % 60 == 0 && keys[4]==false)
   {
     enemies.add(new Enemy());
   }
-
+  
   for(Bot bot : bots)
   {
     bot.display();
@@ -221,6 +221,7 @@ void draw() {
     
      if (head.get(0).diameter<1)
       {
+        keys[4]=true;
         //change colour to red
         fill(255,0,0);
         rect(0,0,width,height);
